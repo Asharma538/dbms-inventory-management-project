@@ -7,3 +7,4 @@ function getTables() {
         console.log(tables[i]);
     }
 }
+
