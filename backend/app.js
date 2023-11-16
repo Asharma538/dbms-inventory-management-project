@@ -15,7 +15,7 @@ app.listen(PORT,()=>{
     console.log("Server is listening on PORT:",PORT);
 })
 
-app.get('',(request,response) => {
+app.get('/',(request,response) => {
     info = {
         'Anadi':'Sharma',
         'Hi':'From backend'
@@ -26,5 +26,7 @@ app.get('',(request,response) => {
 
 app.post('/send',(request,response)=>{
     console.log(request.body);
-    response.send({'Success':200});
+    response.send(
+        {'Success':200}
+    );
 })
