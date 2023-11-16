@@ -9,7 +9,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
-});  
+});
 
 app.listen(PORT,()=>{
     console.log("Server is listening on PORT:",PORT);
@@ -18,7 +18,7 @@ app.listen(PORT,()=>{
 app.get('',(request,response) => {
     info = {
         'Anadi':'Sharma',
-        'Age':20
+        'Hi':'From backend'
     }
     console.log(info);
     response.send(info);
