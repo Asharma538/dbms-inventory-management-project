@@ -20,6 +20,51 @@ const employeeSchema = new mongoose.Schema({
   EmpCity : String
 })
 
+const vendingSchema = new mongoose.Schema({
+  VmID : Number, 
+  Location: String,
+  LastCheckOn : Date,
+  LastFilled: [Date,String],
+  Model: String,
+  DateOfInstallation: Date,
+})
+
+const transactionSchema = new mongoose.Schema({
+  VmID : Number,
+  TransactionType: String,
+  Amount: Number,
+  TransactionID: String,
+  Timestamp:  [Date,String]
+})
+
+const edibleItemsSchema = new mongoose.Schema({
+  PurchaseID: Number,
+  ItemID : Number,
+  MRP: Number,
+  Quantity: Number,
+  ItemName: String,
+  PurchaseDate: Date,
+  ExpiryDate : Date
+})
+
+const electronicItemsSchema = new mongoose.Schema({
+  PurchaseID: Number,
+  ItemID : Number,
+  Price: Number,
+  PurchaseDate: Date,
+  UsedFor: String,
+  Warranty: String,
+  Model: String
+})
+
+const vendorsSchema = new mongoose.Schema({
+  VendorID: Number,
+  VendorName: Number,
+  VendorContact: Number,
+  VendorAddress: String,
+  TypeOfItem: String
+})
+
 const User = mongoose.model('users',userSchema,'users');
 const Employee = mongoose.model('employee',employeeSchema,'employee');
 
