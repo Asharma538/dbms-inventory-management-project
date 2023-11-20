@@ -1,25 +1,24 @@
 import { useState,useEffect } from 'react'
 import './App.css'
-import Nav from './components/Nav';
 import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
 
 function App() {
-  const [data, setData] = useState(null);
+  const [isLoggedIn,setIsLoggedIn] = useState(true);
 
-  useEffect(() => {
-    /* For getting data */
-    fetch('http://localhost:3000/')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => console.error(error));
-  }, []);
-  var logged_in = false;
+  const handleLogin = (status) => {
+    setIsLoggedIn(status);
+  }
 
   return (
     <body>
-      <Login/>
-      {/* {data ? <pre>{JSON.stringify(data)}</pre>:"Loading.." } */}
+      {
+        isLoggedIn?
+        <Dashboard onLogin={handleLogin}/> 
+        : 
+        <Login onLogin={handleLogin}/>
+      }
     </body>
   );
 }
