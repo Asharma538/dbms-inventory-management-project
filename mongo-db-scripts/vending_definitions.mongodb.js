@@ -1,20 +1,26 @@
 /* Don't run this! was just used once for defining attributes. */
-const database = 'vending'; 
-use(database);
+// const database = 'vending'; 
+// use(database);
 
-db.employee.insertOne({
-  "EmpID": 3,
-  "EmpName": "rahesh",
-  "EmpContact": 9280329832,
-  "EmpEmail" : "xyz@gmail.com",
-  "DateOfJoin": '2023-01-01',
-  "EmpAddress": "something",
-  "WorkingShift": "something",
-  "JobTitle": "something",
-  "Salary": 1234,
-  "DOB": '2003-01-01',
-  "EmpCity": "Jaipur"
-})
+// db.complaint.insertOne({
+//   "TransactionID":"xyz123",
+//   "ComplaintType":"Item Didn't fell",
+//   "VmID":1
+// })
+
+// db.employee.insertOne({
+//   "EmpID": 3,
+//   "EmpName": "rahesh",
+//   "EmpContact": 9280329832,
+//   "EmpEmail" : "xyz@gmail.com",
+//   "DateOfJoin": '2023-01-01',
+//   "EmpAddress": "something",
+//   "WorkingShift": "something",
+//   "JobTitle": "something",
+//   "Salary": 1234,
+//   "DOB": '2003-01-01',
+//   "EmpCity": "Jaipur"
+// })
 
 // db.employee.insertOne({
 //   "EmpID": "int",

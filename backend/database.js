@@ -105,6 +105,20 @@ const complaintSchema = new mongoose.Schema({
 
 const User = mongoose.model('users',userSchema,'users');
 const Employee = mongoose.model('employee',employeeSchema,'employee');
+const VendingMachine = mongoose.model('vending_machine',vendingSchema,'vending_machine');
+const Transaction = mongoose.model('transaction',transactionSchema,'transaction');
+const EdibleItems = mongoose.model('edible_items',edibleItemsSchema,'edible_items');
+const ElectronicItems = mongoose.model('electronic_items',electronicItemsSchema,'electronic_items');
+const Vendors = mongoose.model('vendors',vendorsSchema,'vendors');
+const Makes = mongoose.model('makes',makesSchema,'makes');
+const Manages = mongoose.model('manages',managesSchema,'manages');
+const Fills = mongoose.model('fills',fillsSchema,'fills');
+const Maintains = mongoose.model('maintains',maintainsSchema,'maintains');
+const Supplies = mongoose.model('supplies',suppliesSchema,'supplies');
+const Contacts = mongoose.model('contacts',contactsSchema,'contacts');
+const Complaint = mongoose.model('complaint',complaintSchema,'complaint');
+
+
 
 class Database {
   constructor() {
@@ -124,4 +138,4 @@ class Database {
 }
 
 console.log("Database file running");
-module.exports = {db: new Database(), User, Employee};
+module.exports = {db: new Database(), User, Employee, VendingMachine, Transaction, EdibleItems,ElectronicItems, Vendors, Makes,Manages,Fills,Maintains,Supplies,Contacts,Complaint};

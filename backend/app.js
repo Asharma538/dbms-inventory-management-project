@@ -2,7 +2,7 @@ const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
-const { db, User,Employee } = require('./database.js');
+const { db, User,Employee,Complaint } = require('./database.js');
 const { crypt,decrypt } = require('./crypter.js');
 
 app.use(express.json());
@@ -75,5 +75,13 @@ app.post('/signin',(request,response)=>{
             response.status(400).send({Message:err});
         });
 })
-      // Employee table dekhni h ki exist krta h ya nhi 
-      // emp_table mai update krna h user ko
+
+app.get('/call_center',(request,response)=>{
+    Complaint.find({})
+        .then(complaint_list =>{
+            response.send({"Complaints":complaint_list});
+        })
+        .catch(err => {
+            response.status(400).send({Message:err});
+        });
+})
