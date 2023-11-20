@@ -1,5 +1,6 @@
 import React from 'react'
 import Nav from './Nav';
+import CallCenter from './CallCenter';
 
 export default function Dashboard({onLogin}) {
     const doLogout = () => {
@@ -8,7 +9,7 @@ export default function Dashboard({onLogin}) {
     return (
         <div>
             <Nav onLogin={doLogout}/>
-            Dashboard
+            <CallCenter/>
         </div>
     )
 }

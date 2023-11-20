@@ -65,6 +65,44 @@ const vendorsSchema = new mongoose.Schema({
   TypeOfItem: String
 })
 
+const makesSchema = new mongoose.Schema({
+  VmID: Number,
+  TransactionID:String
+})
+
+const managesSchema = new mongoose.Schema({
+  EmpID : Number,
+  TransactionID : String
+})
+
+const fillsSchema = new mongoose.Schema({
+  EmpID : Number,
+  VmID : Number
+})
+
+const maintainsSchema = new mongoose.Schema({
+  VmID : Number,
+  TechnicianID : Number
+})
+
+const suppliesSchema = new mongoose.Schema({
+  TransactionID : String,
+  PurchaseID : Number,
+  VendorID : Number,
+  Amount : Number
+})
+
+const contactsSchema = new mongoose.Schema({
+  StorageManagerID : Number,
+  VendorID : Number
+})
+
+const complaintSchema = new mongoose.Schema({
+  VmID : Number,
+  TransactionID : String,
+  ComplaintType : String 
+})
+
 const User = mongoose.model('users',userSchema,'users');
 const Employee = mongoose.model('employee',employeeSchema,'employee');
 

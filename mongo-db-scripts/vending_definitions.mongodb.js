@@ -1,9 +1,37 @@
 /* Don't run this! was just used once for defining attributes. */
+const database = 'vending'; 
+use(database);
+
+db.employee.insertOne({
+  "EmpID": 3,
+  "EmpName": "rahesh",
+  "EmpContact": 9280329832,
+  "EmpEmail" : "xyz@gmail.com",
+  "DateOfJoin": '2023-01-01',
+  "EmpAddress": "something",
+  "WorkingShift": "something",
+  "JobTitle": "something",
+  "Salary": 1234,
+  "DOB": '2003-01-01',
+  "EmpCity": "Jaipur"
+})
+
+// db.employee.insertOne({
+//   "EmpID": "int",
+//   "EmpName":"string",
+//   "EmpContact":"int",
+//   "EmpEmail" : "string",
+//   "DateOfJoin":"yyyy-mm-dd",
+//   "EmpAddress":"string",
+//   "WorkingShift":"string",
+//   "JobTitle":"string",
+//   "Salary":"int",
+//   "DOB":"yyyy-mm-dd",
+//   "EmpCity":"string"
+// })
 
 /*
 
-const database = 'vending'; 
-use(database);
 
 db.vending_machine.insertOne({
   "VmID" : "int" , 

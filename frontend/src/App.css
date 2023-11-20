@@ -115,3 +115,17 @@ body{
 .login_qn_text{
   cursor: pointer;
 }
+
+.Call-center-table table , th , td{
+  border: 1px solid white;
+  /* width: 100%; */
+}
+
+.Call-center-table table{
+  margin-top: 20px;
+  width: 90%;
+}
+
+.Call-center-table td{
+  text-align: center;
+}
