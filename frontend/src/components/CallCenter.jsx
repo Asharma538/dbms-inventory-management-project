@@ -1,40 +1,72 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
+
 
 export default function CallCenter() {
-  return (
-    <div className='Call-center-table'>
-        <center>
-            <table >
-                <tr>
-                    <th>
-                        VmID
-                    </th>
-                    <th>
-                        Location
-                    </th>
-                    <th>
-                        Complaint-Type
-                    </th>
-                    <th>
-                        TransactionID
-                    </th>
-                </tr>
+    const [complaints , setComplaints]= useState([]);
 
-                <tr>
-                    <td>1</td>
-                    <td>G1</td>
-                    <td>Miscellenous</td>
-                    <td>1234</td>
-                </tr>
+    function fillData(){
 
-                <tr>
-                    <td>1</td>
-                    <td>G1</td>
-                    <td>Miscellenous</td>
-                    <td>1234</td>
-                </tr>
-            </table>
-        </center>
-    </div>
-  )
+        var table =  document.getElementById('complaints-table');
+        table.innerHTML = "";
+        var table_row = document.createElement('tr');
+        
+        var col_names = [];
+
+        for(var key in complaints[0]){
+            if (key == '_id') continue;
+            var table_row_d = document.createElement('td');
+            table_row_d.innerHTML = key;
+            table_row.appendChild(table_row_d);
+            col_names.push(key);
+        }
+        table.appendChild(table_row);
+
+        for(var i = 0 ; i<complaints.length ; i++){
+            table_row = document.createElement('tr');
+            
+            for(var j = 0; j<col_names.length ; j++){
+                var td = document.createElement('td');
+                td.innerHTML = complaints[i][col_names[j]];
+                table_row.appendChild(td);
+                
+            }
+            table.appendChild(table_row);
+        }
+
+    }
+
+    useEffect(()=>{
+        fillData();
+    },[complaints])
+    
+    const get_complaints = () => {
+        fetch('http://localhost:3000/call_center')
+        .then(response => response.json())
+        .then(response => {
+            setComplaints(response.Complaints);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    
+
+    return (
+        <div className='data-table'>
+            <button onClick={get_complaints} className='right refresh'>
+                Refresh
+            </button>
+            {/* {
+                <pre>
+                    {JSON.stringify(complaints[1])}
+                </pre>
+            } */}
+            <br></br>
+            <center>
+                <table id='complaints-table'>
+
+                </table>
+            </center>
+        </div>
+    )
 }

@@ -116,16 +116,27 @@ body{
   cursor: pointer;
 }
 
-.Call-center-table table , th , td{
+.data-table table , th , td{
   border: 1px solid white;
   /* width: 100%; */
 }
 
-.Call-center-table table{
-  margin-top: 20px;
-  width: 90%;
+.data-table table{
+  /* margin-top: 20px; */
+  width: calc(100% - 100px);
+  margin: 0% 50px;
 }
 
-.Call-center-table td{
+.data-table td{
   text-align: center;
+}
+
+.refresh{
+  background-color: rgb(233, 228, 228);
+  color: black;
+  font-size: 16px;
+  padding: 9px;
+  cursor: pointer;
+  margin: 10px 20px 10px 0px ;
+  border-radius: 6px;
 }

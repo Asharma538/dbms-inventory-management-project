@@ -12,14 +12,14 @@ function App() {
   }
 
   return (
-    <body>
+    <main>
       {
         isLoggedIn?
         <Dashboard onLogin={handleLogin}/> 
         : 
         <Login onLogin={handleLogin}/>
       }
-    </body>
+    </main>
   );
 }
 
