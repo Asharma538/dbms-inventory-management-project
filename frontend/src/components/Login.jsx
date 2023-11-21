@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 
-export default function Login({onLogin}) {
+export default function Login({onLogin,defineUser}) {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [accountExists, setAccountExists] = useState(false);
 
-  const doLogin = () => {
+  const doLogin = (role) => {
+    defineUser(role);
     onLogin(true);
-  }
+  } 
 
   const handleInputChange = (event) => {
     const { name,value } = event.target;
@@ -42,7 +43,10 @@ export default function Login({onLogin}) {
         response => {
           console.log(response);
           if (response.Message=='Success'){
-            doLogin();
+            doLogin(response.JobTitle);
+          }
+          else{
+            alert(response.Message);
           }
         }
       );
@@ -61,7 +65,12 @@ export default function Login({onLogin}) {
         response => response.json()
       ).then(
         response => {
-          console.log(response);
+          if (response.Message=='Success'){
+            changeAccountStatus();
+          }
+          else{
+            alert(response.Message);
+          }
         }
       );
     }

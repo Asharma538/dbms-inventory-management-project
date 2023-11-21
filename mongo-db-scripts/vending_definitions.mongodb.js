@@ -2,10 +2,19 @@
 // const database = 'vending'; 
 // use(database);
 
+// db.vending_machine.insertOne({
+//   "VmID" : 2, 
+//   "Location": "IIT Jodhpur mess",
+//   "LastCheckOn" : "YYYY-MM-DD",
+//   "LastFilled": ["YYYY-MM-DD", "HH:MM:SS"],
+//   "Model": "string",
+//   "DateOfInstallation": "YYYY-MM-DD",
+// })
+
 // db.complaint.insertOne({
-//   "TransactionID":"xyz123",
+//   "TransactionID":"abc123",
 //   "ComplaintType":"Item Didn't fell",
-//   "VmID":1
+//   "VmID":2
 // })
 
 // db.employee.insertOne({

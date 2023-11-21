@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   email : String,
   password : String,
   role : String
-})
+},{ versionKey: false })
 
 const employeeSchema = new mongoose.Schema({
   EmpID : Number,
@@ -18,7 +18,7 @@ const employeeSchema = new mongoose.Schema({
   Salary : Number,
   DOB : Date,
   EmpCity : String
-})
+},{ versionKey: false })
 
 const vendingSchema = new mongoose.Schema({
   VmID : Number, 
@@ -27,7 +27,7 @@ const vendingSchema = new mongoose.Schema({
   LastFilled: [Date,String],
   Model: String,
   DateOfInstallation: Date,
-})
+},{ versionKey: false })
 
 const transactionSchema = new mongoose.Schema({
   VmID : Number,
@@ -35,7 +35,7 @@ const transactionSchema = new mongoose.Schema({
   Amount: Number,
   TransactionID: String,
   Timestamp:  [Date,String]
-})
+},{ versionKey: false })
 
 const edibleItemsSchema = new mongoose.Schema({
   PurchaseID: Number,
@@ -45,7 +45,7 @@ const edibleItemsSchema = new mongoose.Schema({
   ItemName: String,
   PurchaseDate: Date,
   ExpiryDate : Date
-})
+},{ versionKey: false })
 
 const electronicItemsSchema = new mongoose.Schema({
   PurchaseID: Number,
@@ -55,7 +55,7 @@ const electronicItemsSchema = new mongoose.Schema({
   UsedFor: String,
   Warranty: String,
   Model: String
-})
+},{ versionKey: false })
 
 const vendorsSchema = new mongoose.Schema({
   VendorID: Number,
@@ -63,45 +63,45 @@ const vendorsSchema = new mongoose.Schema({
   VendorContact: Number,
   VendorAddress: String,
   TypeOfItem: String
-})
+},{ versionKey: false })
 
 const makesSchema = new mongoose.Schema({
   VmID: Number,
   TransactionID:String
-})
+},{ versionKey: false })
 
 const managesSchema = new mongoose.Schema({
   EmpID : Number,
   TransactionID : String
-})
+},{ versionKey: false })
 
 const fillsSchema = new mongoose.Schema({
   EmpID : Number,
   VmID : Number
-})
+},{ versionKey: false })
 
 const maintainsSchema = new mongoose.Schema({
   VmID : Number,
   TechnicianID : Number
-})
+},{ versionKey: false })
 
 const suppliesSchema = new mongoose.Schema({
   TransactionID : String,
   PurchaseID : Number,
   VendorID : Number,
   Amount : Number
-})
+},{ versionKey: false })
 
 const contactsSchema = new mongoose.Schema({
   StorageManagerID : Number,
   VendorID : Number
-})
+},{ versionKey: false })
 
 const complaintSchema = new mongoose.Schema({
   VmID : Number,
   TransactionID : String,
-  ComplaintType : String 
-})
+  ComplaintType : String
+},{ versionKey: false })
 
 const User = mongoose.model('users',userSchema,'users');
 const Employee = mongoose.model('employee',employeeSchema,'employee');

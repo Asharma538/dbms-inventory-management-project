@@ -29,8 +29,8 @@ app.post('/login',(request,response)=>{
             if (list_emp.length==0){
                 response.json({Message:"Failed, Try Signing in first"});
             }
-            else if (decrypt(list_emp[0].password) == password){
-                response.json({Message:"Success"});
+            else if (list_emp[0].password == crypt(password)){
+                response.json({Message:"Success",JobTitle:list_emp[0].role});
             }
             else{
                 response.send({Message:"Failed"});
