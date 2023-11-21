@@ -17,14 +17,14 @@ function App() {
   }
 
   return (
-    <body>
+    <main>
       {
         isLoggedIn?
         <Dashboard onLogin={handleLogin} user={user}/> 
         : 
         <Login onLogin={handleLogin} defineUser={handleUser}/>
       }
-    </body>
+    </main>
   );
 }
 

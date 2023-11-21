@@ -2,7 +2,7 @@ const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
-const { db, User,Employee,Complaint } = require('./database.js');
+const { db, User,Employee,Complaint , VendingMachine} = require('./database.js');
 const { crypt,decrypt } = require('./crypter.js');
 
 app.use(express.json());
@@ -77,11 +77,50 @@ app.post('/signin',(request,response)=>{
 })
 
 app.get('/call_center',(request,response)=>{
-    Complaint.find({})
-        .then(complaint_list =>{
-            response.send({"Complaints":complaint_list});
+    
+    Complaint.aggregate([{
+        $lookup : {
+            from : "vending_machine",
+            localField : "VmID",
+            foreignField : "VmID",
+            as : "vending_machine",
+            pipeline:[
+                {
+                    $project: {
+                      Location: 1,
+                      _id: 0
+                    }
+                }
+            ]
+        }
+    },{
+        $addFields: {
+            Location:{
+                $reduce: {
+                    input: "$vending_machine.Location",
+                    initialValue: "",
+                    in: "$$this"
+                  }
+            }
+        }
+    },{
+        $project: {
+            vending_machine: 0
+        }
+    }]).exec()
+        .then(merged_data=>{
+            response.send({"Complaints":merged_data});
+        })
+        .catch(err=>console.log(err))
+
+})
+
+app.get('/technicians' , (request , response) =>{
+    VendingMachine.find({})
+        .then(vending_details => {
+            response.send({Details : vending_details});
         })
         .catch(err => {
-            response.status(400).send({Message:err});
-        });
+            response.send({Message : err})
+        })
 })

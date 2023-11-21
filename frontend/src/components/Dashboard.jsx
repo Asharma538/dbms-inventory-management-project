@@ -1,6 +1,7 @@
 import React from 'react'
 import Nav from './Nav';
 import CallCenter from './CallCenter';
+import Technician from './Technician';
 
 export default function Dashboard({onLogin,user}) {
     const doLogout = () => {
