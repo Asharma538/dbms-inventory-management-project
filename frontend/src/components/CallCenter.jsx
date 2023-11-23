@@ -1,11 +1,10 @@
 import React, { useState,useEffect } from 'react'
+import Nav from './Nav';
 
-
-export default function CallCenter() {
+export default function CallCenter({doLogoutCC}) {
     const [complaints , setComplaints]= useState([]);
 
     function fillData(){
-
         var table =  document.getElementById('complaints-table');
         table.innerHTML = "";
         var table_row = document.createElement('tr');
@@ -36,7 +35,7 @@ export default function CallCenter() {
     }
 
     useEffect(()=>{
-        fillData();
+		fillData();
     },[complaints])
     
     const get_complaints = () => {
@@ -49,18 +48,16 @@ export default function CallCenter() {
         });
     }
 
-    
+    const doLogout = () => {
+		doLogoutCC();
+    }
 
     return (
         <div className='data-table'>
+            <Nav doLogout={doLogout}/>
             <button onClick={get_complaints} className='right refresh'>
                 Refresh
             </button>
-            {/* {
-                <pre>
-                    {JSON.stringify(complaints[1])}
-                </pre>
-            } */}
             <br></br>
             <center>
                 <table id='complaints-table'>

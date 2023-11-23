@@ -1,10 +1,10 @@
 import React, { useState , useEffect } from 'react'
+import Nav from './Nav';
 
-export default function Technician() {
+export default function Technician({doLogoutTechnician}) {
     const [details , setDetails] = useState([]);
 
     function fillData(){
-        console.log(details[0]);
         var table = document.getElementById('vending-table');
         table.innerHTML = "";
         var table_row = document.createElement('tr');
@@ -36,22 +36,22 @@ export default function Technician() {
     },[details])
 
     const get_details = () => {
-        fetch('http://localhost:3000/technicians')
+        fetch('http://localhost:3000/technician')
         .then(response => response.json())
         .then(response => setDetails(response.Details))
         .catch(err => {console.log(err)});
     }
 
+    const doLogout = () => {
+		doLogoutTechnician();
+    }
+
     return (
         <div className='data-table'>
+            <Nav doLogout={doLogout}/>
             <button onClick={get_details} className='right refresh'>
                 Refresh
             </button>
-            {/* {
-                <pre>
-                    {JSON.stringify(complaints[1])}
-                </pre>
-            } */}
             <br></br>
             <center>
                 <table id='vending-table'>

@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard';
 
 function App() {
   const [isLoggedIn,setIsLoggedIn] = useState(true);
-  const [user,setUser] = useState('');
+  const [user,setUser] = useState("StoreManager");
 
   const handleLogin = (status) => {
     setIsLoggedIn(status);
@@ -21,7 +21,7 @@ function App() {
       {
         isLoggedIn?
         <Dashboard onLogin={handleLogin} user={user}/> 
-        : 
+        :
         <Login onLogin={handleLogin} defineUser={handleUser}/>
       }
     </main>

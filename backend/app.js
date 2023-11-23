@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 const { db, User,Employee,Complaint , VendingMachine} = require('./database.js');
-const { crypt,decrypt } = require('./crypter.js');
+const { crypt } = require('./crypter.js');
 
 app.use(express.json());
 
@@ -115,7 +115,7 @@ app.get('/call_center',(request,response)=>{
 
 })
 
-app.get('/technicians' , (request , response) =>{
+app.get('/technician' , (request , response) =>{
     VendingMachine.find({})
         .then(vending_details => {
             response.send({Details : vending_details});
