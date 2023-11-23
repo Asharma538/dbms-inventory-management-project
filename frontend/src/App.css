@@ -154,12 +154,15 @@ body{
   position: absolute;
   top: 50%;
   transform: translate(-50%,-50%);
-  text-shadow: 1px 1px 0px rgb(255, 0, 115);
+  border-radius: 4px;
   cursor: pointer;
   transition: 150ms;
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+  padding: 5px 10px;
 }
 
 .dashboard-section-text:hover{
-  color: rgb(255, 255, 255);
   font-size: 25px;
 }

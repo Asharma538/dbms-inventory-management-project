@@ -3,7 +3,7 @@ import Nav from './Nav';
 
 export default function Operator({doLogoutOperator}) {
   const doLogout = () => {
-		doLogoutOperator();
+		  doLogoutOperator();
     }
   return (
     <div>
