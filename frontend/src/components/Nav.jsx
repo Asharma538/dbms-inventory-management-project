@@ -1,13 +1,23 @@
 import React from 'react'
 
-export default function Nav({doLogout}) {
+export default function Nav(props) {
   const doLogoutNav = () => {
-    doLogout();
+    props.doLogout();
   }
-  return (
-    <div className='nav'>
+  if (props.getToHome){
+    return (
+      <div className='nav'>
+        <button className='left' onClick={()=>{props.getToHome();}}>Home</button>
+        <button className='right' onClick={doLogoutNav}>Log Out</button>
+      </div>
+    )
+  }
+  else{
+    return (
+      <div className='nav'>
         <button className='left'>Home</button>
         <button className='right' onClick={doLogoutNav}>Log Out</button>
-    </div>
-  )
+      </div>
+    )
+  }
 }

@@ -77,7 +77,7 @@ app.post('/signin',(request,response)=>{
 })
 
 app.get('/call_center',(request,response)=>{
-    
+
     Complaint.aggregate([{
         $lookup : {
             from : "vending_machine",
@@ -107,12 +107,69 @@ app.get('/call_center',(request,response)=>{
         $project: {
             vending_machine: 0
         }
-    }]).exec()
+    },]).exec()
         .then(merged_data=>{
             response.send({"Complaints":merged_data});
         })
         .catch(err=>console.log(err))
 
+})
+
+app.post('/call_center_search',(request,response)=>{
+    const attribute = request.body.attribute;
+    var query = {};
+    if (attribute=="VmID"){
+        query = {[attribute]:parseInt(request.body.search_text)};
+    }
+    else if (attribute=="Timestamp"){
+        query = {[attribute]:new Date(request.body.search_text)};
+    }
+    else{
+        query = {[attribute]:request.body.search_text};
+    }
+    Complaint.aggregate([
+        {
+            $lookup : {
+                from : "vending_machine",
+                localField : "VmID",
+                foreignField : "VmID",
+                as : "vending_machine",
+                pipeline:[
+                    {
+                        $project: {
+                        Location: 1,
+                        _id: 0
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            $addFields: {
+                Location:{
+                    $reduce: {
+                            input: "$vending_machine.Location",
+                            initialValue: "",
+                            in: "$$this"
+                        }
+                }
+            }
+        },
+        {
+            $match : query
+        },
+        {
+            $project: {
+                vending_machine: 0
+            } 
+        }
+    ]).exec()
+        .then(results => {
+            response.send({"Results":results});
+        })
+        .catch(err=>{
+            response.send({"Message":err});
+        });
 })
 
 app.get('/technician' , (request , response) =>{

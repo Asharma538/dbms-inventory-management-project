@@ -13,6 +13,9 @@ export default function StoreManager({doLogoutSM}) {
   const showStockDetials = () => {
     setSection("stock");
   }
+  const showHome = () => {
+    setSection("home");
+  }
 
   const doLogout = () => {
     doLogoutSM();
@@ -21,11 +24,11 @@ export default function StoreManager({doLogoutSM}) {
   switch (section) {
     case "vendor":
       return (
-        <VendorDetails doLogoutSM_V={doLogout}/>
+        <VendorDetails doLogoutSM_V={doLogout} getToHome={showHome}/>
       )
     case "stock":
       return (
-        <StoreManager doLogoutSM_S={doLogout}/>
+        <StockDetails doLogoutSM_S={doLogout} getToHome={showHome}/>
       )
     default:
       return (

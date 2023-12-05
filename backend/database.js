@@ -100,7 +100,8 @@ const contactsSchema = new mongoose.Schema({
 const complaintSchema = new mongoose.Schema({
   VmID : Number,
   TransactionID : String,
-  ComplaintType : String
+  ComplaintType : String,
+  Timestamp : Date
 },{ versionKey: false })
 
 const User = mongoose.model('users',userSchema,'users');
@@ -137,5 +138,20 @@ class Database {
   }
 }
 
-console.log("Database file running");
-module.exports = {db: new Database(), User, Employee, VendingMachine, Transaction, EdibleItems,ElectronicItems, Vendors, Makes,Manages,Fills,Maintains,Supplies,Contacts,Complaint};
+module.exports = {
+  db: new Database(), 
+  User, 
+  Employee, 
+  VendingMachine, 
+  Transaction, 
+  EdibleItems,
+  ElectronicItems, 
+  Vendors, 
+  Makes,
+  Manages,
+  Fills,
+  Maintains,
+  Supplies,
+  Contacts,
+  Complaint
+};

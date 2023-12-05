@@ -8,7 +8,6 @@ export default function Technician({doLogoutTechnician}) {
         var table = document.getElementById('vending-table');
         table.innerHTML = "";
         var table_row = document.createElement('tr');
-
         var col_names = [];
         
         for(var key in details[0]){
@@ -18,6 +17,7 @@ export default function Technician({doLogoutTechnician}) {
             table_row.appendChild(td);
             col_names.push(key);
         }
+        table_row.classList.add('tr-head');
         table.appendChild(table_row);
 
         for(var i = 0 ; i<details.length ; i++){
