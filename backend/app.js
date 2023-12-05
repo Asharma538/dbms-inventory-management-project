@@ -2,7 +2,7 @@ const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
-const { db, User,Employee,Complaint , VendingMachine} = require('./database.js');
+const { db, User,Employee,Complaint , VendingMachine , EdibleItems , ElectronicItems} = require('./database.js');
 const { crypt } = require('./crypter.js');
 
 app.use(express.json());
@@ -181,3 +181,33 @@ app.get('/technician' , (request , response) =>{
             response.send({Message : err})
         })
 })
+
+app.get('/vendorDetails' , (request , response) => {
+    Vendors.find({})
+    .then(vendor_details => {
+        response.send({Details : vendor_details});
+    } )
+    .catch(err => {
+        response.send({Message : err});
+    })
+})
+
+
+app.get('/stockDetails' , (request , response) => {
+    Promise.all([
+        EdibleItems.find({}),
+        ElectronicItems.find({})
+    ])
+    .then(([edibleItems, electronicItems]) => {
+        const res = {
+            "EdibleItemsDetails": edibleItems,
+            "ElectronicItemsDetails": electronicItems
+        };
+        console.log(res);
+        response.send(res);
+    })
+    .catch(err => {
+        response.send({Message : err});
+    });
+ });
+ 
