@@ -7,6 +7,33 @@ export default function CallCenter({doLogoutCC}) {
 		doLogoutCC();
     }
 
+
+    const temp = (arg) => {
+        console.log(arg);
+        if(window.confirm(`Are you sure that the complaint is resolved?`)){
+            fetch("http://localhost:3000/delete_complaint" , {
+                method : "POST",
+                headers : {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify(
+                    {
+                        complaintID : arg,
+                    }
+                )
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                alert(data.data);
+                get_data();
+            })
+        }
+        else{
+
+        }
+
+    }
+
     // -------------------------------------------------------------------------
     // data section code                                                // START
     
@@ -46,15 +73,33 @@ export default function CallCenter({doLogoutCC}) {
             table_row.appendChild(table_row_d);
             col_names.push(key);
         }
+
         setOptions(col_names);
+        
+        var table_row_d = document.createElement('td');
+        table_row_d.innerHTML = 'Status';
+        table_row.appendChild(table_row_d);
 
         table_row.classList.add('tr-head');
         table.appendChild(table_row);
-
+        
+        col_names.push('Status');
         for(var i = 0 ; i<data.length ; i++){
+
             table_row = document.createElement('tr');
-            
             for(var j = 0; j<col_names.length ; j++){
+                if(col_names[j] == 'Status'){
+                    var td = document.createElement('td');
+                    var button = document.createElement('button');
+                    button.innerHTML = 'Resolve';
+
+                    const id_doc = data[i]._id;
+                    button.onclick=(()=>{temp(id_doc);})
+                    td.appendChild(button);
+                    table_row.appendChild(td);
+                    continue;
+                }
+                
                 var td = document.createElement('td');
                 td.innerHTML = data[i][col_names[j]];
                 table_row.appendChild(td);
