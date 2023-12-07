@@ -1,6 +1,11 @@
 const PORT = process.env.PORT || 3000;
 
 const express = require('express');
+const jwt = require('jsonwebtoken');
+
+JWT_SECRET_KEY = vm_jwt_secret_key 
+TOKEN_HEADER_KEY = vm_token_header_key
+
 const app = express();
 const { db, User,Employee,Complaint , VendingMachine , EdibleItems , ElectronicItems} = require('./database.js');
 const { crypt } = require('./crypter.js');
@@ -210,4 +215,13 @@ app.get('/stockDetails' , (request , response) => {
         response.send({Message : err});
     });
  });
- 
+
+app.post("/delete_complaint" , async(req , res) => {
+    const ComplaintID = req.body.complaintID;
+    try{
+        Complaint.deleteOne({_id : ComplaintID}).then(res.send({status : "Ok" , data : "Resolved"}));
+    }
+    catch(error){
+        console.log(error);
+    }
+})
