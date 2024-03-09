@@ -128,7 +128,7 @@ class Database {
 
   _connect() {
     mongoose
-      .connect('mongodb+srv://Asharma538:12345677@dbms.j4xdmkc.mongodb.net/vending?retryWrites=true&w=majority')
+      .connect('mongodburi')
       .then(() => {
         console.log('Database Connected!!');
       })
